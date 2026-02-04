@@ -1,0 +1,155 @@
+<!--
+  📚 LESSON: Angular Template Syntax (New Control Flow - Angular 17+)
+  
+  The NEW way (recommended):
+  @if, @else, @for, @switch, @defer
+  
+  The OLD way (still works):
+  *ngIf, *ngFor, ngSwitch
+  
+  Benefits of new syntax:
+  - More readable
+  - Better type narrowing
+  - Built-in empty/loading states
+  - No need to import directives
+-->
+
+<div 
+  class="flashcard-container"
+  #cardElement
+  tabindex="0"
+  role="button"
+  [attr.aria-label]="'Flashcard ' + cardNumber() + ' of ' + totalCards()"
+  (keydown)="handleKeydown($event)"
+>
+  <!-- Progress indicator -->
+  <div class="progress-bar">
+    <div class="progress-fill" [style.width.%]="progressPercentage()"></div>
+    <span class="progress-text">{{ cardNumber() }} / {{ totalCards() }}</span>
+  </div>
+
+  <!-- Card flip container -->
+  <div 
+    class="card-flip" 
+    [class.flipped]="isFlipped()"
+    [class.correct]="status() === 'correct'"
+    [class.incorrect]="status() === 'incorrect'"
+    (click)="flipCard()"
+  >
+    <!-- Front of card (Question) -->
+    <div class="card-face card-front" #questionSide>
+      <div class="card-header">
+        <span class="category-badge">{{ card().category }}</span>
+        
+        <!-- 
+          📚 LESSON: @switch - New Control Flow 
+          Replaces ngSwitch directive
+        -->
+        @switch (card().difficulty) {
+          @case ('easy') {
+            <span class="difficulty-badge easy">Easy</span>
+          }
+          @case ('medium') {
+            <span class="difficulty-badge medium">Medium</span>
+          }
+          @case ('hard') {
+            <span class="difficulty-badge hard">Hard</span>
+          }
+        }
+      </div>
+      
+      <div class="card-content">
+        <h2 class="question-text">{{ card().question }}</h2>
+        <p class="flip-hint">Click to reveal answer</p>
+      </div>
+      
+      <div class="card-footer">
+        <span class="stats">
+          ✅ {{ card().timesCorrect }} | ❌ {{ card().timesIncorrect }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Back of card (Answer) -->
+    <div class="card-face card-back">
+      <div class="card-header">
+        <span class="answer-label">Answer</span>
+      </div>
+      
+      <div class="card-content scrollable">
+        <p class="answer-text">{{ card().answer }}</p>
+        
+        <!-- Code Example Section -->
+        @if (card().codeExample) {
+          <div class="code-example">
+            <span class="code-label">Example:</span>
+            <pre><code>{{ card().codeExample }}</code></pre>
+          </div>
+        }
+      </div>
+      
+      <!-- 
+        📚 LESSON: @if - New Conditional Rendering
+        Replaces *ngIf directive
+        
+        Benefits:
+        - No need to import CommonModule just for this
+        - Better TypeScript type narrowing
+        - Cleaner syntax
+      -->
+      @if (status() === 'unanswered') {
+        <div class="action-buttons">
+          <button 
+            class="btn btn-correct" 
+            (click)="markCorrect(); $event.stopPropagation()"
+            aria-label="Mark as correct"
+          >
+            ✓ Got it!
+          </button>
+          <button 
+            class="btn btn-incorrect" 
+            (click)="markIncorrect(); $event.stopPropagation()"
+            aria-label="Mark as incorrect"
+          >
+            ✗ Need practice
+          </button>
+        </div>
+      } @else {
+        <div class="result-indicator">
+          @if (status() === 'correct') {
+            <span class="result correct">✓ Correct!</span>
+          } @else {
+            <span class="result incorrect">✗ Needs more practice</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="navigation">
+    <button 
+      class="nav-btn" 
+      (click)="goToPrevious()"
+      [disabled]="cardNumber() <= 1"
+      aria-label="Previous card"
+    >
+      ← Previous
+    </button>
+    
+    <div class="keyboard-hints">
+      <span>Space: Flip</span>
+      <span>←→: Navigate</span>
+      <span>1/2: Answer</span>
+    </div>
+    
+    <button 
+      class="nav-btn" 
+      (click)="goToNext()"
+      [disabled]="cardNumber() >= totalCards()"
+      aria-label="Next card"
+    >
+      Next →
+    </button>
+  </div>
+</div>

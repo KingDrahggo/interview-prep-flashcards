@@ -1,0 +1,227 @@
+<!--
+  📚 LESSON: Template Reference Variables
+  
+  #variableName creates a reference to:
+  - DOM element: #myDiv on a <div>
+  - Component: #myComp on <app-component>
+  - Directive: #myForm="ngForm" on form with ngForm
+
+  Can be used in:
+  - Template expressions
+  - @ViewChild()
+-->
+
+<div class="study-page">
+  <!-- Header -->
+  <header class="study-header">
+    <div class="logo">
+      <span class="logo-icon">🚀</span>
+      <h1>Web Dev Interview Prep</h1>
+    </div>
+    
+    @if (isStudying()) {
+      <div class="session-info">
+        <span class="timer">⏱️ {{ formatTime((elapsedTime$ | async) ?? 0) }}</span>
+        <button class="btn-secondary" (click)="endStudySession()">End Session</button>
+      </div>
+    }
+  </header>
+
+  <main class="study-content">
+    <!-- 
+      📚 LESSON: @if/@else - New Control Flow
+      
+      @if (condition) {
+        content
+      } @else if (other) {
+        other content
+      } @else {
+        fallback
+      }
+    -->
+    
+    @if (!isStudying() && !showStats()) {
+      <!-- Start Screen -->
+      <section class="start-screen">
+        <div class="hero">
+          <h2>Master Web Development for Your Interview</h2>
+          <p>{{ flashcards().length }} flashcards covering Angular, JavaScript, CSS, Node.js, and more!</p>
+        </div>
+
+        <!-- Technology Tabs -->
+        <div class="technology-tabs">
+          <h3>Select Technology</h3>
+          <div class="tech-pills">
+            <button 
+              class="tech-pill"
+              [class.active]="selectedTechnology() === 'all'"
+              (click)="selectTechnology('all')"
+            >
+              <span class="tech-icon">📚</span>
+              <span class="tech-name">All</span>
+              <span class="tech-count">{{ flashcards().length }}</span>
+            </button>
+            @for (tech of allTechnologies; track tech.id) {
+              <button 
+                class="tech-pill"
+                [class.active]="selectedTechnology() === tech.id"
+                [style.--tech-color]="tech.color"
+                (click)="selectTechnology(tech.id)"
+              >
+                <span class="tech-icon">{{ tech.icon }}</span>
+                <span class="tech-name">{{ tech.name }}</span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+          <h3>Filter by Topic</h3>
+          <div class="category-pills">
+            <!--
+              📚 LESSON: @for - New Iteration Syntax
+              
+              track - REQUIRED unique identifier (like trackBy)
+              $index - current index
+              $first, $last, $even, $odd - boolean helpers
+            -->
+            @for (category of categories(); track category) {
+              <button 
+                class="category-pill"
+                [class.active]="selectedCategory() === category"
+                (click)="selectCategory(category)"
+              >
+                {{ category === 'all' ? 'All Topics' : category }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Card Preview Grid -->
+        <div class="card-preview">
+          <h3>Cards to Study ({{ filteredCards().length }})</h3>
+          <div class="preview-grid">
+            @for (card of filteredCards(); track card.id; let i = $index) {
+              <div class="preview-card" [class]="card.difficulty">
+                <span class="card-number">#{{ i + 1 }}</span>
+                <!--
+                  📚 LESSON: Using Pipes in Templates
+                  
+                  {{ value | pipeName:arg1:arg2 }}
+                  Pipes transform display values
+                -->
+                <p>{{ card.question | truncate:60 }}</p>
+                <div class="preview-footer">
+                  <span class="difficulty-badge {{ card.difficulty }}">
+                    {{ card.difficulty }}
+                  </span>
+                  <span class="progress">{{ card | cardProgress }}</span>
+                </div>
+              </div>
+            } @empty {
+              <!-- @empty - shown when array is empty -->
+              <p class="empty-message">No cards match this filter</p>
+            }
+          </div>
+        </div>
+
+        <button class="btn-primary start-btn" (click)="startStudySession()">
+          Start Studying →
+        </button>
+      </section>
+    } @else if (isStudying()) {
+      <!-- Study Mode -->
+      <section class="study-mode">
+        @if (currentCard(); as card) {
+          <!--
+            📚 LESSON: Component Communication
+            
+            [property]="value" - Input binding (parent → child)
+            (event)="handler($event)" - Output binding (child → parent)
+            
+            This is how Angular components communicate!
+          -->
+          <app-flashcard
+            [card]="card"
+            [cardNumber]="displayCardNumber()"
+            [totalCards]="flashcards().length"
+            [status]="getCardStatus(card.id)"
+            (answered)="onCardAnswered($event)"
+            (navigate)="onCardNavigate($event)"
+          />
+        } @else {
+          <p>No cards available</p>
+        }
+      </section>
+    } @else if (showStats()) {
+      <!-- Results Screen -->
+      <section class="results-screen">
+        <div class="results-card">
+          <h2>Session Complete! 🎉</h2>
+          
+          <div class="stats-grid">
+            <div class="stat-item">
+              <span class="stat-value">{{ stats().totalCards }}</span>
+              <span class="stat-label">Cards Studied</span>
+            </div>
+            <div class="stat-item correct">
+              <span class="stat-value">{{ stats().totalCorrect }}</span>
+              <span class="stat-label">Correct</span>
+            </div>
+            <div class="stat-item incorrect">
+              <span class="stat-value">{{ stats().totalIncorrect }}</span>
+              <span class="stat-label">Need Practice</span>
+            </div>
+            <div class="stat-item">
+              <!--
+                📚 LESSON: Async Pipe
+                
+                {{ observable$ | async }}
+                
+                - Automatically subscribes
+                - Automatically unsubscribes on destroy
+                - Returns latest emitted value
+                - Best practice for displaying Observable data!
+              -->
+              <span class="stat-value">{{ formatTime((elapsedTime$ | async) ?? 0) }}</span>
+              <span class="stat-label">Study Time</span>
+            </div>
+          </div>
+
+          <div class="accuracy-display">
+            <div class="accuracy-ring">
+              <svg viewBox="0 0 100 100">
+                <circle 
+                  class="bg-ring" 
+                  cx="50" cy="50" r="45" 
+                />
+                <circle 
+                  class="progress-ring" 
+                  cx="50" cy="50" r="45"
+                  [style.strokeDashoffset]="283 - (stats().accuracy / 100 * 283)"
+                />
+              </svg>
+              <span class="accuracy-text">{{ stats().accuracy | accuracy }}</span>
+            </div>
+          </div>
+
+          <div class="streak-info">
+            @if (stats().streakCount > 0) {
+              <span class="streak">🔥 {{ stats().streakCount }} card streak!</span>
+            }
+          </div>
+
+          <div class="result-actions">
+            <button class="btn-primary" (click)="resetAndStudyAgain()">
+              Study Again
+            </button>
+            <button class="btn-secondary" (click)="showStats.set(false)">
+              Back to Home
+            </button>
+          </div>
+        </div>
+      </section>
+    }
+  </main>
+</div>

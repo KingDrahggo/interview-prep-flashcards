@@ -1,0 +1,639 @@
+// ═══════════════════════════════════════════════════════
+// 🎮 FLASHCARD COMPONENT - GAMING DARK AESTHETIC
+// ═══════════════════════════════════════════════════════
+
+// Variables
+$bg-void: #030308;
+$bg-deep: #08080f;
+
+$neon-cyan: #00f5ff;
+$neon-purple: #bf00ff;
+$neon-pink: #ff00aa;
+$neon-blue: #0066ff;
+$neon-green: #00ff88;
+
+$success: #00ff88;
+$error: #ff3366;
+$warning: #ffcc00;
+
+$text-primary: #ffffff;
+$text-secondary: rgba(255, 255, 255, 0.75);
+$text-muted: rgba(255, 255, 255, 0.45);
+
+$glass-bg: rgba(255, 255, 255, 0.04);
+$glass-border: rgba(255, 255, 255, 0.08);
+
+$gradient-cyber: linear-gradient(135deg, #00f5ff 0%, #bf00ff 50%, #ff00aa 100%);
+$gradient-neon: linear-gradient(135deg, #0066ff 0%, #00f5ff 100%);
+
+$card-radius: 16px;
+$transition-speed: 0.6s;
+
+// ═══════════════════════════════════════════════════════
+// CONTAINER
+// ═══════════════════════════════════════════════════════
+
+.flashcard-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 1rem;
+  outline: none;
+  animation: fadeIn 0.5s ease-out;
+
+  &:focus-visible {
+    .card-flip {
+      box-shadow: 0 0 0 3px rgba(0, 245, 255, 0.5), 0 0 30px rgba(0, 245, 255, 0.3);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// PROGRESS BAR - Cyber Style
+// ═══════════════════════════════════════════════════════
+
+.progress-bar {
+  position: relative;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+
+  // Outer glow
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+
+  .progress-fill {
+    height: 100%;
+    background: $gradient-cyber;
+    border-radius: 3px;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+
+    // Animated shine effect
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent);
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    // Glow effect
+    box-shadow: 0 0 15px rgba(0, 245, 255, 0.5),
+    0 0 30px rgba(191, 0, 255, 0.3);
+  }
+
+  .progress-text {
+    position: absolute;
+    right: 0;
+    top: -1.75rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $neon-cyan;
+    letter-spacing: 0.1em;
+    text-shadow: 0 0 10px rgba(0, 245, 255, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// 3D CARD FLIP - Gaming Card Effect
+// ═══════════════════════════════════════════════════════
+
+.card-flip {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  height: auto;
+  cursor: pointer;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: transform $transition-speed cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.flipped {
+    .card-front {
+      transform: rotateY(180deg);
+    }
+
+    .card-back {
+      transform: rotateY(0deg);
+    }
+  }
+
+  // Status glow effects
+  &.correct {
+    .card-face {
+      border-color: $success;
+      box-shadow: 0 0 40px rgba($success, 0.4),
+        0 0 80px rgba($success, 0.2),
+        inset 0 0 40px rgba($success, 0.1);
+    }
+  }
+
+  &.incorrect {
+    .card-face {
+      border-color: $error;
+      box-shadow: 0 0 40px rgba($error, 0.4),
+        0 0 80px rgba($error, 0.2),
+        inset 0 0 40px rgba($error, 0.1);
+    }
+  }
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: $card-radius;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+
+  // Glass/cyber effect
+  background: linear-gradient(145deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  // Default glow
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+
+  transition: all 0.4s ease, transform $transition-speed cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-front {
+  transform: rotateY(0deg);
+
+  // Cyan accent glow at top
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $neon-cyan, $neon-purple, transparent);
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+  }
+}
+
+.card-back {
+  transform: rotateY(-180deg);
+
+  // Green accent for answer side
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, $neon-green, transparent);
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// CARD HEADER
+// ═══════════════════════════════════════════════════════
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.category-badge {
+  padding: 0.4rem 0.85rem;
+  background: rgba(0, 245, 255, 0.1);
+  border: 1px solid rgba(0, 245, 255, 0.3);
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $neon-cyan;
+}
+
+.difficulty-badge {
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  &.easy {
+    background: rgba($success, 0.15);
+    border: 1px solid rgba($success, 0.4);
+    color: $success;
+    text-shadow: 0 0 10px rgba($success, 0.5);
+  }
+
+  &.medium {
+    background: rgba($warning, 0.15);
+    border: 1px solid rgba($warning, 0.4);
+    color: $warning;
+    text-shadow: 0 0 10px rgba($warning, 0.5);
+  }
+
+  &.hard {
+    background: rgba($error, 0.15);
+    border: 1px solid rgba($error, 0.4);
+    color: $error;
+    text-shadow: 0 0 10px rgba($error, 0.5);
+  }
+}
+
+.answer-label {
+  padding: 0.4rem 0.85rem;
+  background: rgba($neon-green, 0.15);
+  border: 1px solid rgba($neon-green, 0.4);
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $neon-green;
+  text-shadow: 0 0 10px rgba($neon-green, 0.5);
+}
+
+// ═══════════════════════════════════════════════════════
+// CARD CONTENT
+// ═══════════════════════════════════════════════════════
+
+.card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+
+  &.scrollable {
+    overflow-y: auto;
+    max-height: 380px;
+    justify-content: flex-start;
+    text-align: left;
+    align-items: stretch;
+    padding-right: 0.75rem;
+
+    // Cyber scrollbar
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, $neon-cyan, $neon-purple);
+      border-radius: 3px;
+
+      &:hover {
+        background: linear-gradient(180deg, $neon-purple, $neon-pink);
+      }
+    }
+  }
+}
+
+.question-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: $text-primary;
+  margin-bottom: 1rem;
+  letter-spacing: 0.01em;
+}
+
+.answer-text {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.7;
+  color: $text-secondary;
+  margin-bottom: 1rem;
+}
+
+// ═══════════════════════════════════════════════════════
+// CODE EXAMPLE - Terminal Style
+// ═══════════════════════════════════════════════════════
+
+.code-example {
+  margin-top: 1.25rem;
+  width: 100%;
+
+  .code-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $neon-cyan;
+    margin-bottom: 0.6rem;
+
+    // Terminal dots
+    &::before {
+      content: '● ● ●';
+      font-size: 0.5rem;
+      color: $neon-purple;
+      letter-spacing: 0.2em;
+    }
+  }
+
+  pre {
+    margin: 0;
+    padding: 1.25rem;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 245, 255, 0.15);
+    overflow-x: auto;
+    position: relative;
+
+    // Subtle glow
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5),
+      0 0 20px rgba(0, 0, 0, 0.3);
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      white-space: pre;
+    }
+  }
+}
+
+.flip-hint {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: $text-muted;
+  margin-top: auto;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+// ═══════════════════════════════════════════════════════
+// CARD FOOTER
+// ═══════════════════════════════════════════════════════
+
+.card-footer {
+  display: flex;
+  justify-content: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stats {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: $text-muted;
+}
+
+// ═══════════════════════════════════════════════════════
+// ACTION BUTTONS - Cyber Style
+// ═══════════════════════════════════════════════════════
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent);
+    transition: left 0.4s ease;
+  }
+
+  &:hover::before {
+    left: 100%;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.btn-correct {
+  background: linear-gradient(135deg, rgba($success, 0.2), rgba($success, 0.1));
+  border: 2px solid $success;
+  color: $success;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba($success, 0.3), rgba($success, 0.2));
+    box-shadow: 0 0 30px rgba($success, 0.4),
+      inset 0 0 20px rgba($success, 0.1);
+    transform: translateY(-3px);
+  }
+}
+
+.btn-incorrect {
+  background: linear-gradient(135deg, rgba($error, 0.2), rgba($error, 0.1));
+  border: 2px solid $error;
+  color: $error;
+
+  &:hover {
+    background: linear-gradient(135deg, rgba($error, 0.3), rgba($error, 0.2));
+    box-shadow: 0 0 30px rgba($error, 0.4),
+      inset 0 0 20px rgba($error, 0.1);
+    transform: translateY(-3px);
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// RESULT INDICATOR
+// ═══════════════════════════════════════════════════════
+
+.result-indicator {
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+.result {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+
+  &.correct {
+    color: $success;
+    text-shadow: 0 0 20px rgba($success, 0.6);
+    animation: pulse 1s ease-in-out infinite;
+  }
+
+  &.incorrect {
+    color: $error;
+    text-shadow: 0 0 20px rgba($error, 0.6);
+    animation: pulse 1s ease-in-out infinite;
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════════════
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+}
+
+.nav-btn {
+  padding: 0.85rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: $text-secondary;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover:not(:disabled) {
+    background: rgba(0, 245, 255, 0.1);
+    border-color: $neon-cyan;
+    color: $neon-cyan;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 245, 255, 0.2);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}
+
+.keyboard-hints {
+  display: flex;
+  gap: 0.75rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: $text-muted;
+
+  span {
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 4px;
+
+    kbd {
+      color: $neon-cyan;
+      font-weight: 600;
+    }
+  }
+
+  @media (max-width: 640px) {
+    display: none;
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// ANIMATIONS
+// ═══════════════════════════════════════════════════════
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// ═══════════════════════════════════════════════════════
+// RESPONSIVE
+// ═══════════════════════════════════════════════════════
+
+@media (max-width: 640px) {
+  .flashcard-container {
+    padding: 0.5rem;
+  }
+
+  .card-flip {
+    min-height: 420px;
+  }
+
+  .card-face {
+    padding: 1.25rem;
+  }
+
+  .question-text {
+    font-size: 1.15rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+}
