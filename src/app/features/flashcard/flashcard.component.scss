@@ -638,22 +638,72 @@ $transition-speed: 0.6s;
 
 @media (max-width: 640px) {
   .flashcard-container {
-    padding: 0.5rem;
+    padding: 0.25rem;
+  }
+
+  .progress-bar {
+    margin-bottom: 1.5rem;
+    height: 4px;
+
+    .progress-text {
+      font-size: 0.7rem;
+      top: -1.5rem;
+    }
   }
 
   .card-flip {
-    min-height: 420px;
+    min-height: 450px;
   }
 
   .card-face {
-    padding: 1.25rem;
+    padding: 1.25rem 1rem;
+  }
+
+  .card-header {
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 
   .question-text {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .answer-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .code-example {
+    pre {
+      padding: 0.75rem;
+
+      code {
+        font-size: 0.7rem;
+      }
+    }
   }
 
   .action-buttons {
-    flex-direction: column;
+    flex-direction: row; // Keep them side-by-side but larger
+    gap: 0.75rem;
+    padding-top: 1rem;
+
+    .btn {
+      padding: 0.85rem 0.5rem;
+      font-size: 1rem;
+    }
+  }
+
+  .navigation {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+
+    .nav-btn {
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+    }
   }
 }
