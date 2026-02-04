@@ -31,6 +31,7 @@ app.get('/users', (req, res) => {
     technology: 'nestjs',
     category: 'Core',
     difficulty: 'easy',
+    version: 'NestJS 10.x',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -110,6 +111,7 @@ export class UserController {
     technology: 'nestjs',
     category: 'Dependency Injection',
     difficulty: 'medium',
+    version: 'NestJS 9+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -281,6 +283,7 @@ getProfile(@Request() req) {
     technology: 'nestjs',
     category: 'Authentication',
     difficulty: 'hard',
+    version: '@nestjs/jwt',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -423,6 +426,7 @@ export class UserService {
     technology: 'nestjs',
     category: 'Database',
     difficulty: 'medium',
+    version: '@nestjs/typeorm',
     timesCorrect: 0,
     timesIncorrect: 0
   },

@@ -20,6 +20,7 @@ public class Application {
     technology: 'springboot',
     category: 'Core',
     difficulty: 'easy',
+    version: 'Spring Boot 3.x',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -182,6 +183,7 @@ public User getUser(Long userId) { ... }`,
     technology: 'springboot',
     category: 'Security',
     difficulty: 'hard',
+    version: 'Spring Security 6',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -296,6 +298,7 @@ public class DatabaseHealthIndicator implements HealthIndicator {
     technology: 'springboot',
     category: 'DevOps',
     difficulty: 'medium',
+    version: 'Spring Boot 2+',
     timesCorrect: 0,
     timesIncorrect: 0
   },

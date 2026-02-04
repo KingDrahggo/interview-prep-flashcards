@@ -125,6 +125,7 @@ function Counter() {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'easy',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -160,6 +161,7 @@ function UserProfile({ userId }) {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'medium',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -199,6 +201,7 @@ function Button() {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'medium',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -236,6 +239,7 @@ function Cart() {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'hard',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -271,6 +275,7 @@ const Child = memo(function Child({ items, onClick }) {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'hard',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -312,6 +317,7 @@ function TextInput() {
     technology: 'react',
     category: 'Hooks',
     difficulty: 'medium',
+    version: 'React 16.8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -489,6 +495,7 @@ const MyComponent = lazy(() =>
     technology: 'react',
     category: 'Performance',
     difficulty: 'medium',
+    version: 'React 16.6+',
     timesCorrect: 0,
     timesIncorrect: 0
   },

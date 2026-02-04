@@ -20,6 +20,7 @@ public class Main {
     technology: 'java',
     category: 'Core',
     difficulty: 'easy',
+    version: 'Java 21 LTS',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -83,6 +84,7 @@ Map<String, List<User>> byCountry = users.stream()
     technology: 'java',
     category: 'Streams',
     difficulty: 'medium',
+    version: 'Java 8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -102,6 +104,7 @@ Optional<String> name = user
     technology: 'java',
     category: 'Core',
     difficulty: 'medium',
+    version: 'Java 8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -126,6 +129,7 @@ public class Bird extends Animal implements Flyable { }`,
     technology: 'java',
     category: 'OOP',
     difficulty: 'medium',
+    version: 'Java 8+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -195,6 +199,7 @@ public record User(String name, String email) {
     technology: 'java',
     category: 'Core',
     difficulty: 'medium',
+    version: 'Java 14+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -218,6 +223,7 @@ public synchronized void increment() {
     technology: 'java',
     category: 'Concurrency',
     difficulty: 'hard',
+    version: 'Java 8+',
     timesCorrect: 0,
     timesIncorrect: 0
   }

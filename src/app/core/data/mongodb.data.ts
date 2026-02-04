@@ -32,6 +32,7 @@ export const MONGODB_CARDS: Flashcard[] = [
     technology: 'mongodb',
     category: 'Core',
     difficulty: 'easy',
+    version: 'MongoDB 6.0+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -229,6 +230,7 @@ db.users.updateOne(
     technology: 'mongodb',
     category: 'Aggregation',
     difficulty: 'hard',
+    version: 'MongoDB 3.2+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -359,6 +361,7 @@ const users = await User.find({ role: 'admin' });`,
     technology: 'mongodb',
     category: 'Mongoose',
     difficulty: 'medium',
+    version: 'Mongoose 7+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -505,6 +508,7 @@ await mongoose.connection.transaction(async (session) => {
     technology: 'mongodb',
     category: 'Transactions',
     difficulty: 'hard',
+    version: 'MongoDB 4.0+',
     timesCorrect: 0,
     timesIncorrect: 0
   }

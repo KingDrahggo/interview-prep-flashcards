@@ -30,6 +30,7 @@ server.listen(3000, () => {
     technology: 'node',
     category: 'Core',
     difficulty: 'easy',
+    version: 'Node.js 18+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -89,6 +90,7 @@ const module = await import('./module.js');
     technology: 'node',
     category: 'Modules',
     difficulty: 'medium',
+    version: 'ES Modules',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -127,6 +129,7 @@ app.use('/api/users', userRoutes);`,
     technology: 'node',
     category: 'Express',
     difficulty: 'medium',
+    version: 'Express 4.x',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -385,6 +388,7 @@ if (process.env.NODE_ENV === 'production') {
     technology: 'node',
     category: 'Security',
     difficulty: 'hard',
+    version: 'Express 4.x',
     timesCorrect: 0,
     timesIncorrect: 0
   },

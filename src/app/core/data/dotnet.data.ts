@@ -29,6 +29,7 @@ app.Run();`,
     technology: 'dotnet',
     category: 'Core',
     difficulty: 'easy',
+    version: '.NET 6+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -223,6 +224,7 @@ app.Run();`,
     technology: 'dotnet',
     category: 'Web',
     difficulty: 'medium',
+    version: '.NET 6+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -263,6 +265,7 @@ app.Run();`,
     technology: 'dotnet',
     category: 'Blazor',
     difficulty: 'medium',
+    version: '.NET 5+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -385,6 +388,7 @@ public record UserResponse(
     technology: 'dotnet',
     category: 'Core',
     difficulty: 'medium',
+    version: 'C# 9+',
     timesCorrect: 0,
     timesIncorrect: 0
   }

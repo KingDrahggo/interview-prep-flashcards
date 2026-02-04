@@ -34,6 +34,7 @@ button { padding: 10px; }
     technology: 'vue',
     category: 'Core',
     difficulty: 'easy',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -71,6 +72,7 @@ const increment = () => count.value++;
     technology: 'vue',
     category: 'Core',
     difficulty: 'medium',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -108,6 +110,7 @@ const { name, age } = toRefs(user); // Both reactive
     technology: 'vue',
     category: 'Reactivity',
     difficulty: 'medium',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -147,6 +150,7 @@ fullName.value = 'John Doe'; // Triggers setter
     technology: 'vue',
     category: 'Reactivity',
     difficulty: 'easy',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -183,6 +187,7 @@ watchEffect((onCleanup) => {
     technology: 'vue',
     category: 'Reactivity',
     difficulty: 'medium',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -424,6 +429,7 @@ const { x, y } = useMouse();
     technology: 'vue',
     category: 'Composables',
     difficulty: 'medium',
+    version: 'Vue 3',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -603,6 +609,7 @@ const counter = useCounterStore();
     technology: 'vue',
     category: 'State Management',
     difficulty: 'medium',
+    version: 'Pinia 2+',
     timesCorrect: 0,
     timesIncorrect: 0
   }
