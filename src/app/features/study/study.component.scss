@@ -169,6 +169,72 @@ $gradient-neon: linear-gradient(135deg, #0066ff 0%, #00f5ff 100%);
             letter-spacing: 0.03em;
             animation: slideUp 0.6s ease-out 0.1s both;
         }
+
+        // Mobile quick start button - shows only on mobile
+        .mobile-start-btn {
+            display: none; // Hidden on desktop
+            margin-top: 1.5rem;
+            animation: slideUp 0.6s ease-out 0.2s both;
+
+            @media (max-width: 768px) {
+                display: inline-flex;
+            }
+        }
+    }
+}
+
+// ═══════════════════════════════════════════════════════
+// FLOATING ACTION BUTTON - Mobile Only
+// ═══════════════════════════════════════════════════════
+
+.fab-start {
+    display: none; // Hidden on desktop
+
+    @media (max-width: 768px) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        bottom: 2rem;
+        right: 1.5rem;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: $gradient-cyber;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1000;
+        box-shadow:
+            0 4px 20px rgba(0, 245, 255, 0.4),
+            0 0 30px rgba(191, 0, 255, 0.3);
+        animation: fabPulse 2s ease-in-out infinite;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &:active {
+            transform: scale(1.1);
+            box-shadow:
+                0 6px 30px rgba(0, 245, 255, 0.6),
+                0 0 40px rgba(191, 0, 255, 0.5);
+        }
+    }
+}
+
+@keyframes fabPulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 4px 20px rgba(0, 245, 255, 0.4),
+            0 0 30px rgba(191, 0, 255, 0.3);
+    }
+
+    50% {
+        box-shadow:
+            0 4px 30px rgba(0, 245, 255, 0.6),
+            0 0 50px rgba(191, 0, 255, 0.5);
     }
 }
 

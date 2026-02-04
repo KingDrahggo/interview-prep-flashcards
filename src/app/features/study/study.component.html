@@ -52,7 +52,21 @@
         <div class="hero">
           <h2>Master Web Development for Your Interview</h2>
           <p>{{ flashcards().length }} flashcards covering Angular, JavaScript, CSS, Node.js, and more!</p>
+          
+          <!-- Mobile Quick Start Button -->
+          <button class="btn-primary mobile-start-btn" (click)="startStudySession()">
+            🚀 Start Studying Now
+          </button>
         </div>
+
+        <!-- Floating Action Button for Mobile -->
+        <button 
+          class="fab-start" 
+          (click)="startStudySession()"
+          [attr.aria-label]="'Start studying ' + filteredCards().length + ' cards'"
+        >
+          ▶
+        </button>
 
         <!-- Technology Tabs -->
         <div class="technology-tabs">
