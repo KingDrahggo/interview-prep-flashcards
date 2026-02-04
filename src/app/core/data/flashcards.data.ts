@@ -15,6 +15,7 @@ import { VUE_CARDS } from './vue.data';
 // Languages
 import { JAVASCRIPT_CARDS } from './javascript.data';
 import { JAVA_CARDS } from './java.data';
+import { PYTHON_CARDS } from './python.data';
 
 // Web Basics
 import { CSS_CARDS } from './css.data';
@@ -23,6 +24,7 @@ import { HTML_CARDS } from './html.data';
 // Backend
 import { NODE_CARDS } from './node.data';
 import { NESTJS_CARDS } from './nestjs.data';
+import { DJANGO_CARDS } from './django.data';
 import { DOTNET_CARDS } from './dotnet.data';
 import { SPRINGBOOT_CARDS } from './springboot.data';
 
@@ -54,12 +56,14 @@ export const ALL_FLASHCARDS: Flashcard[] = [
   // Languages
   ...JAVASCRIPT_CARDS,
   ...JAVA_CARDS,
+  ...PYTHON_CARDS,
   // Web Basics
   ...CSS_CARDS,
   ...HTML_CARDS,
   // Backend
   ...NODE_CARDS,
   ...NESTJS_CARDS,
+  ...DJANGO_CARDS,
   ...DOTNET_CARDS,
   ...SPRINGBOOT_CARDS,
   // Database
@@ -121,10 +125,12 @@ export {
   VUE_CARDS, 
   JAVASCRIPT_CARDS, 
   JAVA_CARDS,
+  PYTHON_CARDS,
   CSS_CARDS, 
   HTML_CARDS, 
   NODE_CARDS, 
-  NESTJS_CARDS, 
+  NESTJS_CARDS,
+  DJANGO_CARDS, 
   DOTNET_CARDS,
   SPRINGBOOT_CARDS,
   MONGODB_CARDS, 

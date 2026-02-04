@@ -18,10 +18,12 @@ export type Technology =
   | 'vue'
   | 'javascript' 
   | 'typescript'
+  | 'python'
   | 'css' 
   | 'html' 
   | 'node' 
-  | 'nestjs' 
+  | 'nestjs'
+  | 'django' 
   | 'mongodb'
   | 'dsa'
   | 'aws'
@@ -49,6 +51,7 @@ export const TECHNOLOGIES: TechnologyInfo[] = [
   // Languages
   { id: 'javascript', name: 'JavaScript', icon: '🟨', color: '#f7df1e' },
   { id: 'typescript', name: 'TypeScript', icon: '🔷', color: '#3178c6' },
+  { id: 'python', name: 'Python', icon: '🐍', color: '#3776ab' },
   { id: 'java', name: 'Java', icon: '☕', color: '#f89820' },
   // Web Basics
   { id: 'css', name: 'CSS/Tailwind', icon: '🎨', color: '#38bdf8' },
@@ -56,6 +59,7 @@ export const TECHNOLOGIES: TechnologyInfo[] = [
   // Backend
   { id: 'node', name: 'Node/Express', icon: '🟢', color: '#68a063' },
   { id: 'nestjs', name: 'NestJS', icon: '🐱', color: '#e0234e' },
+  { id: 'django', name: 'Django', icon: '🎸', color: '#092e20' },
   { id: 'dotnet', name: '.NET', icon: '🟣', color: '#512bd4' },
   { id: 'springboot', name: 'Spring Boot', icon: '🌱', color: '#6db33f' },
   // Database
