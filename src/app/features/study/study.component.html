@@ -14,17 +14,23 @@
 <div class="study-page">
   <!-- Header -->
   <header class="study-header">
+    <div class="header-left">
+      <!-- Empty for balance -->
+    </div>
+    
     <div class="logo">
       <span class="logo-icon">🚀</span>
       <h1>Web Dev Interview Prep</h1>
     </div>
     
-    @if (isStudying()) {
-      <div class="session-info">
-        <span class="timer">⏱️ {{ formatTime((elapsedTime$ | async) ?? 0) }}</span>
-        <button class="btn-secondary" (click)="endStudySession()">End Session</button>
-      </div>
-    }
+    <div class="header-right">
+      @if (isStudying()) {
+        <div class="session-info">
+          <span class="timer">⏱️ {{ formatTime((elapsedTime$ | async) ?? 0) }}</span>
+          <button class="btn-secondary" (click)="endStudySession()">End Session</button>
+        </div>
+      }
+    </div>
   </header>
 
   <main class="study-content">

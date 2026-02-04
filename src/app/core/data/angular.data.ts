@@ -121,6 +121,7 @@ export class CounterComponent {
     technology: 'angular',
     category: 'Signals',
     difficulty: 'easy',
+    version: 'Angular 16+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -144,6 +145,7 @@ export class CartComponent {
     technology: 'angular',
     category: 'Signals',
     difficulty: 'medium',
+    version: 'Angular 16+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -166,6 +168,7 @@ export class ThemeComponent {
     technology: 'angular',
     category: 'Signals',
     difficulty: 'medium',
+    version: 'Angular 16+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -410,6 +413,7 @@ provideHttpClient(withInterceptors([authInterceptor]))`,
     technology: 'angular',
     category: 'HTTP',
     difficulty: 'hard',
+    version: 'Angular 15+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -468,6 +472,7 @@ export const authGuard: CanActivateFn = (route, state) => {
     technology: 'angular',
     category: 'Routing',
     difficulty: 'hard',
+    version: 'Angular 15+',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -530,6 +535,7 @@ export class HighlightDirective {
     technology: 'angular',
     category: 'Directives',
     difficulty: 'medium',
+    version: 'Angular 14+',
     timesCorrect: 0,
     timesIncorrect: 0
   }

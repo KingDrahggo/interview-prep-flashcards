@@ -272,6 +272,26 @@ $transition-speed: 0.6s;
   }
 }
 
+.card-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.version-badge {
+  padding: 0.35rem 0.65rem;
+  background: rgba($neon-purple, 0.15);
+  border: 1px solid rgba($neon-purple, 0.4);
+  border-radius: 6px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $neon-purple;
+  text-shadow: 0 0 8px rgba($neon-purple, 0.5);
+}
+
 .answer-label {
   padding: 0.4rem 0.85rem;
   background: rgba($neon-green, 0.15);

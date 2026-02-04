@@ -80,6 +80,7 @@ export interface Flashcard {
   technology: Technology; // Which tech stack this belongs to
   category: string;
   difficulty: 'easy' | 'medium' | 'hard';  // Union type = only these values allowed
+  version?: string;  // Optional version (e.g., "Angular 16", "ES2020")
   timesCorrect: number;
   timesIncorrect: number;
   lastReviewed?: Date;  // Optional property (?)

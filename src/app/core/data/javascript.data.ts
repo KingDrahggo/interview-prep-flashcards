@@ -29,6 +29,7 @@ obj.a = 2; // ✅ Mutation allowed
     technology: 'javascript',
     category: 'Variables',
     difficulty: 'easy',
+    version: 'ES6/ES2015',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -214,6 +215,7 @@ promise
     technology: 'javascript',
     category: 'Promises',
     difficulty: 'medium',
+    version: 'ES6/ES2015',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -242,6 +244,7 @@ const user = await fetchUserData(123);`,
     technology: 'javascript',
     category: 'Async/Await',
     difficulty: 'medium',
+    version: 'ES2017',
     timesCorrect: 0,
     timesIncorrect: 0
   },
@@ -266,6 +269,7 @@ Promise.race([p1, p2]).then(console.log); // 1`,
     technology: 'javascript',
     category: 'Promises',
     difficulty: 'hard',
+    version: 'ES2020',
     timesCorrect: 0,
     timesIncorrect: 0
   },

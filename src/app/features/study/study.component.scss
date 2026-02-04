@@ -46,10 +46,10 @@ $gradient-neon: linear-gradient(135deg, #0066ff 0%, #00f5ff 100%);
 // ═══════════════════════════════════════════════════════
 
 .study-header {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    padding: 1.25rem 2rem;
+    padding: 0.75rem 2rem;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid $glass-border;
@@ -70,20 +70,30 @@ $gradient-neon: linear-gradient(135deg, #0066ff 0%, #00f5ff 100%);
     }
 }
 
+.header-left {
+    min-width: 0; // Spacer for centering
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .logo {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: center;
+    gap: 0.75rem;
 
     .logo-icon {
-        font-size: 2.5rem;
+        font-size: 2rem;
         filter: drop-shadow(0 0 10px rgba(0, 245, 255, 0.5));
         animation: float 3s ease-in-out infinite;
     }
 
     h1 {
         font-family: 'Orbitron', sans-serif;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         text-transform: uppercase;

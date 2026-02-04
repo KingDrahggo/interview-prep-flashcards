@@ -41,21 +41,27 @@
       <div class="card-header">
         <span class="category-badge">{{ card().category }}</span>
         
-        <!-- 
-          📚 LESSON: @switch - New Control Flow 
-          Replaces ngSwitch directive
-        -->
-        @switch (card().difficulty) {
-          @case ('easy') {
-            <span class="difficulty-badge easy">Easy</span>
+        <div class="card-badges">
+          <!-- 
+            📚 LESSON: @switch - New Control Flow 
+            Replaces ngSwitch directive
+          -->
+          @switch (card().difficulty) {
+            @case ('easy') {
+              <span class="difficulty-badge easy">Easy</span>
+            }
+            @case ('medium') {
+              <span class="difficulty-badge medium">Medium</span>
+            }
+            @case ('hard') {
+              <span class="difficulty-badge hard">Hard</span>
+            }
           }
-          @case ('medium') {
-            <span class="difficulty-badge medium">Medium</span>
+          
+          @if (card().version) {
+            <span class="version-badge">{{ card().version }}</span>
           }
-          @case ('hard') {
-            <span class="difficulty-badge hard">Hard</span>
-          }
-        }
+        </div>
       </div>
       
       <div class="card-content">
