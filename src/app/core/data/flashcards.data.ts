@@ -6,15 +6,40 @@
  */
 
 import { Flashcard, Technology, TECHNOLOGIES, TechnologyInfo } from '../models/flashcard.model';
+
+// Frameworks
 import { ANGULAR_CARDS } from './angular.data';
 import { REACT_CARDS } from './react.data';
 import { VUE_CARDS } from './vue.data';
+
+// Languages
 import { JAVASCRIPT_CARDS } from './javascript.data';
+import { JAVA_CARDS } from './java.data';
+
+// Web Basics
 import { CSS_CARDS } from './css.data';
 import { HTML_CARDS } from './html.data';
+
+// Backend
 import { NODE_CARDS } from './node.data';
 import { NESTJS_CARDS } from './nestjs.data';
+import { DOTNET_CARDS } from './dotnet.data';
+import { SPRINGBOOT_CARDS } from './springboot.data';
+
+// Database
 import { MONGODB_CARDS } from './mongodb.data';
+
+// Cloud
+import { AWS_CARDS } from './aws.data';
+import { AZURE_CARDS } from './azure.data';
+
+// Design
+import { FIGMA_CARDS } from './figma.data';
+import { UIUX_CARDS } from './uiux.data';
+import { SPLINE_CARDS } from './spline.data';
+import { BLENDER_CARDS } from './blender.data';
+
+// CS Fundamentals
 import { DSA_CARDS } from './dsa.data';
 
 // ═══════════════════════════════════════════════════════
@@ -22,15 +47,32 @@ import { DSA_CARDS } from './dsa.data';
 // ═══════════════════════════════════════════════════════
 
 export const ALL_FLASHCARDS: Flashcard[] = [
+  // Frameworks
   ...ANGULAR_CARDS,
   ...REACT_CARDS,
   ...VUE_CARDS,
+  // Languages
   ...JAVASCRIPT_CARDS,
+  ...JAVA_CARDS,
+  // Web Basics
   ...CSS_CARDS,
   ...HTML_CARDS,
+  // Backend
   ...NODE_CARDS,
   ...NESTJS_CARDS,
+  ...DOTNET_CARDS,
+  ...SPRINGBOOT_CARDS,
+  // Database
   ...MONGODB_CARDS,
+  // Cloud
+  ...AWS_CARDS,
+  ...AZURE_CARDS,
+  // Design
+  ...FIGMA_CARDS,
+  ...UIUX_CARDS,
+  ...SPLINE_CARDS,
+  ...BLENDER_CARDS,
+  // CS Fundamentals
   ...DSA_CARDS
 ];
 
@@ -73,4 +115,24 @@ export function getTechnologiesWithCounts(): (TechnologyInfo & { count: number }
 // Re-export for convenience
 export { TECHNOLOGIES };
 export type { Technology, TechnologyInfo };
-export { ANGULAR_CARDS, REACT_CARDS, VUE_CARDS, JAVASCRIPT_CARDS, CSS_CARDS, HTML_CARDS, NODE_CARDS, NESTJS_CARDS, MONGODB_CARDS, DSA_CARDS };
+export { 
+  ANGULAR_CARDS, 
+  REACT_CARDS, 
+  VUE_CARDS, 
+  JAVASCRIPT_CARDS, 
+  JAVA_CARDS,
+  CSS_CARDS, 
+  HTML_CARDS, 
+  NODE_CARDS, 
+  NESTJS_CARDS, 
+  DOTNET_CARDS,
+  SPRINGBOOT_CARDS,
+  MONGODB_CARDS, 
+  AWS_CARDS,
+  AZURE_CARDS,
+  FIGMA_CARDS,
+  UIUX_CARDS,
+  SPLINE_CARDS,
+  BLENDER_CARDS,
+  DSA_CARDS 
+};
