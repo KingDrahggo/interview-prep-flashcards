@@ -403,5 +403,101 @@ with Pool(processes=4) as pool:
     version: 'Python 3.x',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'python-11',
+    question: 'What is Structural Pattern Matching in Python 3.10+?',
+    answer: 'Introduced in Python 3.10, match-case statements allow for powerful structural pattern matching, similar to switch statements in other languages but with advanced data extraction capabilities.',
+    codeExample: `def handle_command(command):
+    match command.split():
+        case ["quit"]:
+            print("Goodbye!")
+        case ["load", filename]:
+            print(f"Loading {filename}")
+        case ["move", x, y] if int(y) > 0: # With guard
+            print(f"Moving to {x}, {y}")
+        case _:
+            print("Unknown command")
+
+handle_command("move 10 20")`,
+    technology: 'python',
+    category: 'Evolution',
+    difficulty: 'medium',
+    version: 'Python 3.10+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'python-12',
+    question: 'What is the Walrus Operator (:=)?',
+    answer: 'The assignment expression operator (walrus) allows you to assign values to variables as part of an expression. This can lead to cleaner code in loops and conditional statements.',
+    codeExample: `# Common use in while loops
+while (line := file.readline()) != "":
+    process(line)
+
+# Use in conditionals
+if (n := len(data)) > 10:
+    print(f"Too many items: {n}")
+
+# List comprehension filtering
+results = [f(x) for x in data if (res := f(x)) > 0]`,
+    technology: 'python',
+    category: 'Evolution',
+    difficulty: 'easy',
+    version: 'Python 3.8+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'python-13',
+    question: 'How do Abstract Base Classes (ABCs) work in Python?',
+    answer: 'ABCs define a common interface for a set of subclasses. They cannot be instantiated themselves and require subclasses to implement methods decorated with @abstractmethod.',
+    codeExample: `from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+# s = Shape() # Error! Cannot instantiate ABC`,
+    technology: 'python',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'Python 3.4+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'python-14',
+    question: 'Explain Method Resolution Order (MRO).',
+    answer: 'MRO is the order in which Python searches for a method in a class hierarchy. It uses the C3 Linearization algorithm to handle multiple inheritance consistently. Access it via the __mro__ attribute.',
+    codeExample: `class A:
+    def greet(self): print("Hello from A")
+
+class B(A):
+    def greet(self): print("Hello from B")
+
+class C(A):
+    def greet(self): print("Hello from C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.greet() # "Hello from B"
+print(D.__mro__) # D -> B -> C -> A -> object`,
+    technology: 'python',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'Python 3.x',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];

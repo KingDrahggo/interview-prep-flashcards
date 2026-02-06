@@ -14,6 +14,7 @@ import { VUE_CARDS } from './vue.data';
 
 // Languages
 import { JAVASCRIPT_CARDS } from './javascript.data';
+import { TYPESCRIPT_CARDS } from './typescript.data';
 import { JAVA_CARDS } from './java.data';
 import { PYTHON_CARDS } from './python.data';
 
@@ -55,6 +56,7 @@ export const ALL_FLASHCARDS: Flashcard[] = [
   ...VUE_CARDS,
   // Languages
   ...JAVASCRIPT_CARDS,
+  ...TYPESCRIPT_CARDS,
   ...JAVA_CARDS,
   ...PYTHON_CARDS,
   // Web Basics
@@ -124,6 +126,7 @@ export {
   REACT_CARDS, 
   VUE_CARDS, 
   JAVASCRIPT_CARDS, 
+  TYPESCRIPT_CARDS,
   JAVA_CARDS,
   PYTHON_CARDS,
   CSS_CARDS, 

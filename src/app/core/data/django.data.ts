@@ -422,5 +422,70 @@ def handle_order_completed(sender, order, **kwargs):
     version: 'Django 4.0+',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'django-11',
+    question: 'When should you use select_related vs prefetch_related?',
+    answer: 'select_related works by creating a SQL join and including the fields of the related object in the SELECT statement (use for ForeignKey/OneToOne). prefetch_related does a separate lookup for each relationship and does its own "joining" in Python (use for ManyToMany/Reverse FK).',
+    codeExample: `# select_related (1 query, SQL JOIN)
+# Better for single-valued relationships
+posts = Post.objects.select_related('author').all()
+for post in posts:
+    print(post.author.name) # No additional query
+
+# prefetch_related (2 queries, Python JOIN)
+# Better for multi-valued relationships
+users = User.objects.prefetch_related('posts').all()
+for user in users:
+    print(user.posts.count()) # No additional query`,
+    technology: 'django',
+    category: 'ORM Optimization',
+    difficulty: 'hard',
+    version: 'Django 4.0+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'django-12',
+    question: 'How does Django handle static and media files?',
+    answer: 'Static files are assets like CSS/JS/Images that part of the app. Media files are files uploaded by users. In development, Django serves both. In production, a web server (Nginx) or cloud storage (S3) should serve them.',
+    codeExample: `# settings.py
+STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles' # For collectstatic
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# models.py
+class Profile(models.Model):
+    avatar = models.ImageField(upload_to='avatars/') # Saved to MEDIA_ROOT/avatars/`,
+    technology: 'django',
+    category: 'Core',
+    difficulty: 'medium',
+    version: 'Django 4.0+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'django-13',
+    question: 'What is the difference between WSGI and ASGI?',
+    answer: 'WSGI is synchronous and the traditional standard for Python web apps. ASGI is the asynchronous successor, supporting WebSockets, HTTP/2, and long-polling. Django supports both.',
+    codeExample: `# wsgi.py
+application = get_wsgi_application()
+
+# asgi.py
+# Required for Django Channels or async views
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": AuthMiddlewareStack(
+        URLRouter(websocket_urlpatterns)
+    ),
+})`,
+    technology: 'django',
+    category: 'Architecture',
+    difficulty: 'hard',
+    version: 'Django 3.0+',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];

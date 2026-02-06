@@ -538,5 +538,115 @@ const UserCard = memo(
     difficulty: 'medium',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'react-16',
+    question: 'What are React Server Components (RSC)?',
+    answer: 'Server Components run on the server and never send JS to the client. They allow directly accessing databases/files. They can be combined with Client Components. RSC improves performance and reduces bundle size.',
+    codeExample: `// This is a Server Component by default in Next.js/React framework
+async function ProductList() {
+  const products = await db.products.findMany(); // Direct DB access
+  
+  return (
+    <ul>
+      {products.map(p => (
+        <li key={p.id}>{p.name}</li>
+      ))}
+    </ul>
+  );
+}
+
+// ⚠️ Server Components cannot use Hooks (useState, useEffect)
+// ⚠️ Client Components must use "use client" directive`,
+    technology: 'react',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'React 18+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'react-17',
+    question: 'How do you handle errors in React using Error Boundaries?',
+    answer: 'Error Boundaries are components that catch JS errors in their child tree, log errors, and show a fallback UI instead of crashing the whole app. Must be Class components or use libraries like "react-error-boundary".',
+    codeExample: `// Using react-error-boundary (modern way)
+import { ErrorBoundary } from 'react-error-boundary';
+
+function ErrorFallback({error, resetErrorBoundary}) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  )
+}
+
+function MyComponent() {
+  return (
+    <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <ComponentThatMightCrash />
+    </ErrorBoundary>
+  )
+}`,
+    technology: 'react',
+    category: 'Error Handling',
+    difficulty: 'medium',
+    version: 'React 16+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'react-18',
+    question: 'What is forwardRef and when should you use it?',
+    answer: 'forwardRef allows a component to expose its internal DOM ref to its parent. Useful for input components, UI libraries, or when you need to focus/measure a specific element from the outside.',
+    codeExample: `import { forwardRef, useRef } from 'react';
+
+const CustomInput = forwardRef((props, ref) => {
+  return <input {...props} ref={ref} className="my-input" />;
+});
+
+// Parent usage
+function Form() {
+  const inputRef = useRef(null);
+  
+  const focus = () => inputRef.current.focus();
+  
+  return (
+    <>
+      <CustomInput ref={inputRef} placeholder="Type here..." />
+      <button onClick={focus}>Focus Input</button>
+    </>
+  );
+}`,
+    technology: 'react',
+    category: 'Advanced',
+    difficulty: 'medium',
+    version: 'React 16.3+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'react-19',
+    question: 'What is the "use" hook in React 19?',
+    answer: 'The "use" hook reads the value of a resource like a Promise or Context. Unlike other hooks, it can be called inside loops and conditional statements. It works with Suspense to handle loading states.',
+    codeExample: `import { use } from 'react';
+
+function UserInfo({ userPromise }) {
+  // Unwraps promise directly in render
+  // Parent should wrap this in <Suspense>
+  const user = use(userPromise);
+  
+  // Also works with Context
+  const theme = use(ThemeContext);
+
+  return <div>{user.name} ({theme})</div>;
+}`,
+    technology: 'react',
+    category: 'Hooks',
+    difficulty: 'hard',
+    version: 'React 19+',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];

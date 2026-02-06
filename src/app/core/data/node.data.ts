@@ -480,5 +480,92 @@ describe('User API', () => {
     difficulty: 'medium',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'node-13',
+    question: 'How do Streams work in Node.js?',
+    answer: 'Streams are objects that let you read data from a source or write data to a destination in a continuous fashion. Types: Readable, Writable, Duplex, and Transform. They are highly memory-efficient for large data.',
+    codeExample: `const fs = require('fs');
+
+// Reading from a large file
+const readableStream = fs.createReadStream('large-file.txt');
+const writableStream = fs.createWriteStream('copy.txt');
+
+// Piping: the most efficient way to use streams
+readableStream.pipe(writableStream);
+
+// Handling events
+readableStream.on('data', (chunk) => {
+  console.log(\`Received \${chunk.length} bytes of data.\`);
+});
+
+readableStream.on('end', () => {
+  console.log('Finished reading file.');
+});`,
+    technology: 'node',
+    category: 'Core',
+    difficulty: 'hard',
+    version: 'Node.js 18+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'node-14',
+    question: 'What is the difference between the Cluster module and Worker Threads?',
+    answer: 'Cluster module creates multiple instances of Node.js (processes) that share the same server port (best for scaling HTTP servers). Worker Threads run multiple threads within a single process (best for CPU-intensive tasks).',
+    codeExample: `// Cluster Example
+const cluster = require('cluster');
+const http = require('http');
+const numCPUs = require('os').cpus().length;
+
+if (cluster.isMaster) {
+  for (let i = 0; i < numCPUs; i++) cluster.fork();
+} else {
+  http.createServer((req, res) => {
+    res.end('Helo from worker ' + process.pid);
+  }).listen(8000);
+}
+
+// Worker Threads Example
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+if (isMainThread) {
+  const worker = new Worker(__filename);
+  worker.on('message', (msg) => console.log(msg));
+} else {
+  parentPort.postMessage('Done with CPU task!');
+}`,
+    technology: 'node',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'Node.js 12+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'node-15',
+    question: 'How do you use the EventEmitter module?',
+    answer: 'The EventEmitter is a core class in Node.js that facilitates communication between objects. One object (the emitter) emits a named event that causes a recorded listener to be called.',
+    codeExample: `const EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
+
+// Listen for the event
+myEmitter.on('userLoggedIn', (user) => {
+  console.log(\`Welcome, \${user}!\`);
+});
+
+// Emit the event
+myEmitter.emit('userLoggedIn', 'Alice');
+
+// Once - listener runs only once
+myEmitter.once('init', () => console.log('Initialized'));`,
+    technology: 'node',
+    category: 'Core',
+    difficulty: 'medium',
+    version: 'Node.js 18+',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];

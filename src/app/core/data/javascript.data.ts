@@ -594,5 +594,119 @@ const throttledScroll = throttle(onScroll, 100);`,
     difficulty: 'hard',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'js-21',
+    question: 'What is a Symbol and what is it used for?',
+    answer: 'A Symbol is a unique and immutable primitive value. It is primarily used as unique keys for object properties, preventing property name collisions (e.g., in library development).',
+    codeExample: `// Create unique symbols
+const MY_KEY = Symbol('description');
+const OTHER_KEY = Symbol('description');
+
+console.log(MY_KEY === OTHER_KEY); // false
+
+// Use as object key
+const obj = {
+  [MY_KEY]: 'secret value',
+  public: 'I am public'
+};
+
+// Symbols are not enumerable in for...in
+console.log(Object.keys(obj)); // ['public']
+console.log(obj[MY_KEY]); // 'secret value'
+
+// Well-known symbols (e.g., Symbol.iterator)
+const iterableSet = {
+    [Symbol.iterator]: function* () { yield 1; yield 2; }
+};`,
+    technology: 'javascript',
+    category: 'ES6+',
+    difficulty: 'hard',
+    version: 'ES6/ES2015',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'js-22',
+    question: 'What are Iterators and Generators?',
+    answer: 'Iterators are objects that define a sequence and return a next() value. Generators are functions that can be paused (yield) and resumed, returning an iterator. Use generators for async flows or infinite sequences.',
+    codeExample: `// Generator function
+function* countUp(start, end) {
+  for (let i = start; i <= end; i++) {
+    yield i; // Pause and return value
+  }
+}
+
+const counter = countUp(1, 3);
+console.log(counter.next()); // { value: 1, done: false }
+console.log(counter.next()); // { value: 2, done: false }
+console.log(counter.next()); // { value: 3, done: false }
+console.log(counter.next()); // { value: undefined, done: true }
+
+// Used in for...of
+for (const n of countUp(10, 12)) {
+  console.log(n); // 10, 11, 12
+}`,
+    technology: 'javascript',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'ES6/ES2015',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'js-23',
+    question: 'Explain the Proxy and Reflect APIs.',
+    answer: 'Proxy allows you to create a wrapper for another object to intercept and redefine fundamental operations (getting, setting, etc.). Reflect provides methods for interceptable JavaScript operations.',
+    codeExample: `const user = { name: 'Alice', age: 25 };
+
+const handler = {
+  get(target, prop, receiver) {
+    console.log(\`Logging: reading property \${prop}\`);
+    if (prop === 'age') return \`\${target[prop]} years old\`;
+    return Reflect.get(...arguments);
+  },
+  set(target, prop, value) {
+    if (prop === 'age' && typeof value !== 'number') {
+        throw new Error('Age must be a number');
+    }
+    return Reflect.set(...arguments);
+  }
+};
+
+const proxy = new Proxy(user, handler);
+console.log(proxy.name); // Logging... "Alice"
+console.log(proxy.age);  // Logging... "25 years old"
+// proxy.age = 'thirty'; // Error!`,
+    technology: 'javascript',
+    category: 'Advanced',
+    difficulty: 'hard',
+    version: 'ES6/ES2015',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'js-24',
+    question: 'What is BigInt and why do we need it?',
+    answer: 'BigInt is a numeric primitive for integers with arbitrary precision. It allows safely working with integers larger than the max safe integer for Number (2^53 - 1).',
+    codeExample: `const maxSafe = Number.MAX_SAFE_INTEGER; // 9007199254740991
+
+const alsoMax = 9007199254740991n; // appending 'n'
+const huge = 900719925474099100000000n;
+
+console.log(maxSafe + 1); // 9007199254740992
+console.log(maxSafe + 2); // 9007199254740992 (Precision lost!)
+
+console.log(alsoMax + 1n); // 9007199254740992n
+console.log(alsoMax + 2n); // 9007199254740993n (Precision kept!)
+
+// ⚠️ Cannot mix Number and BigInt
+// 10n + 5; // TypeError`,
+    technology: 'javascript',
+    category: 'Types',
+    difficulty: 'medium',
+    version: 'ES2020',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];

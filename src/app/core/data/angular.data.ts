@@ -538,5 +538,68 @@ export class HighlightDirective {
     version: 'Angular 14+',
     timesCorrect: 0,
     timesIncorrect: 0
+  },
+  {
+    id: 'ng-21',
+    question: 'What are Standalone Components and why were they introduced?',
+    answer: 'Standalone components allow building components without NgModules. They are self-contained and explicitly import their dependencies. They simplify the mental model and improve tree-shaking.',
+    codeExample: `@Component({
+  selector: 'app-user',
+  standalone: true,
+  imports: [CommonModule, RouterLink], // Import directly
+  template: \`<h1>{{ name }}</h1>\`
+})
+export class UserComponent {
+  name = 'Admin';
+}`,
+    technology: 'angular',
+    category: 'Core',
+    difficulty: 'easy',
+    version: 'Angular 14+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'ng-22',
+    question: 'How do you use the new Control Flow syntax (@if, @for)?',
+    answer: 'Angular 17+ introduced a built-in control flow syntax. @if replaces *ngIf, @for replaces *ngFor, and @switch replaces [ngSwitch]. It is more performant and easier to read.',
+    codeExample: `@if (isLoading) {
+  <app-spinner />
+} @else if (error) {
+  <p>Error: {{ error }}</p>
+} @else {
+  <ul>
+    @for (user of users; track user.id) {
+      <li>{{ user.name }}</li>
+    } @empty {
+      <li>No users found.</li>
+    }
+  </ul>
+}`,
+    technology: 'angular',
+    category: 'Evolution',
+    difficulty: 'easy',
+    version: 'Angular 17+',
+    timesCorrect: 0,
+    timesIncorrect: 0
+  },
+  {
+    id: 'ng-23',
+    question: 'What is the "transform" property in @Input()?',
+    answer: 'Input transformers allow you to transform values passed to an input before they reach the component. Common uses include boolean coercion or number parsing.',
+    codeExample: `@Component({...})
+export class ButtonComponent {
+  // Automatically converts "true" string to boolean true
+  @Input({ transform: booleanAttribute }) disabled = false;
+
+  // Custom transformer
+  @Input({ transform: (v: string) => v.toUpperCase() }) label = '';
+}`,
+    technology: 'angular',
+    category: 'Core',
+    difficulty: 'medium',
+    version: 'Angular 16.1+',
+    timesCorrect: 0,
+    timesIncorrect: 0
   }
 ];
